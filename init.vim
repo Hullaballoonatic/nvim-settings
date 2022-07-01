@@ -188,8 +188,6 @@ nmap \ :NvimTreeFindFileToggle<CR>
 " nmap <leader>a gaip*
 " set to auto?
 nmap <leader>h :RainbowParentheses!!<CR> 
-" nmap <leader>l :Limelight!!<CR>
-" xmap <leader>l :Limelight!!<CR>
 nmap <leader>k :ColorToggle<CR>
 nmap <silent> <leader><leader> :noh<CR>
 " nmap <Tab> :bnext<CR> " buffer next

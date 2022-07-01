@@ -26,6 +26,7 @@ call plug#begin()
 	Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'kyazdani42/nvim-tree.lua'
     Plug 'github/copilot.vim'
+    Plug 'williamboman/nvim-lsp-installer'
 
 	" Functionalities
 	Plug 'tpope/vim-fugitive'
@@ -129,7 +130,7 @@ autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 """ Core plugin configuration
-" Treesitter
+ "Treesitter
 augroup DraculaTreesitterSourcingFix
     autocmd!
     autocmd ColorScheme dracula runtime after/plugin/dracula.vim
@@ -190,6 +191,8 @@ nmap \ <leader>q
 " set to auto?
 nmap <leader>h :RainbowParentheses!!<CR> 
 nmap <leader>j :set filetype=journal<CR>
+nmap <leader>l :Limelight!!<CR>
+xmap <leader>l :Limelight!!<CR>
 nmap <leader>k :ColorToggle<CR>
 nmap <silent> <leader><leader> :noh<CR>
 " nmap <Tab> :bnext<CR> " buffer next

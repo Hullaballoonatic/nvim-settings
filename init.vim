@@ -11,6 +11,7 @@ call plug#begin()
 	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 	Plug 'nvim-treesitter/playground'
 	Plug 'neovim/nvim-lspconfig'
+    Plug 'williamboman/nvim-lsp-installer'
 	Plug 'hrsh7th/cmp-nvim-lsp'
 	Plug 'hrsh7th/cmp-buffer'
 	Plug 'hrsh7th/cmp-path'
@@ -26,7 +27,8 @@ call plug#begin()
 	Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'kyazdani42/nvim-tree.lua'
     Plug 'github/copilot.vim'
-    Plug 'williamboman/nvim-lsp-installer'
+    " Plug 'weilbith/nvim-code-action-menu'
+    Plug 'kosayoda/nvim-lightbulb'
 
 	" Functionalities
 	Plug 'tpope/vim-fugitive'
@@ -176,6 +178,7 @@ require('telescope-config')
 require('lualine-config')
 require('nvim-tree-config')
 require('diagnostics')
+require('nvim-lightbulb-config')
 EOF
 
 " KEY MAPS ------------------------------------------------------------- {{{
@@ -197,8 +200,6 @@ nmap <leader>k :ColorToggle<CR>
 nmap <silent> <leader><leader> :noh<CR>
 " nmap <Tab> :bnext<CR> " buffer next
 " nmap <S-Tab> :bprevious<CR> " buffer prev
-" nmap <leader>$s <C-w>s<C-w>j:terminal<CR>:set nonumber<CR><S-a> " honestly idk, but i have a hunch
-" nmap <leader>$v <C-w>v<C-w>l:terminal<CR>:set nonumber<CR><S-a> " same
 " }}}
 
 " Python

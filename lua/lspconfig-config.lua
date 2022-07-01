@@ -29,13 +29,30 @@ local on_attach = function(_, bufnr)
 end
 
 -- Update nvim-cmp capabilities and add them to each language server
-require 'nvim-lsp-installer'.setup {}
+require 'nvim-lsp-installer'.setup {
+    automatic_installation = true
+}
 
 local lspconfig = require 'lspconfig'
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-lspconfig.pyright.setup { on_attach = on_attach, capabilities = capabilities }
-lspconfig.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
+local basic_servers = {
+    "jsonls",
+    "pyright",
+    "tailwindcss",
+    "tsserver",
+    "kotlin_language_server",
+    "svelte",
+    "vimls",
+    "graphql",
+    "omnisharp"
+}
+
+for _, server in pairs(basic_servers) do
+    lspconfig[server].setup { on_attach = on_attach, capabilities = capabilities }
+end
+
+-- svelte + typescript
 -- requires manual implementation of typescript-svelte-plugin for every project
 -- npm i --save-dev typescript-svelte-plugin
 -- Then add it to tsconfig.json
@@ -47,12 +64,7 @@ lspconfig.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
 --      }]
 --    }
 -- }
-lspconfig.svelte.setup { on_attach = on_attach, capabilities = capabilities }
-lspconfig.omnisharp.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    --    cmd = { "C:/Program Files/OmniSharp/OmniSharp.exe", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-}
+
 lspconfig.rust_analyzer.setup {
     on_attach = on_attach,
     capabilities = capabilities,
@@ -71,6 +83,7 @@ lspconfig.rust_analyzer.setup {
         }
     }
 }
+
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
     capabilities = capabilities,

@@ -1,9 +1,9 @@
 " PLUGINS -------------------------------------------------------------- {{{
-" let vim_plug_path = stdpath('data') . '/site/autoload/plug.vim'
-" if empty(glob(vim_plug_path))
-"     silent execute '!iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | ni "' . vim_plug_path . '" -Force '
-"     autocmd VimEnter * PlugInstall --sync | source $vimrc
-" endif
+let vim_plug_path = stdpath('data') . '/site/autoload/plug.vim'
+if empty(glob(vim_plug_path))
+    silent execute '!iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | ni "' . vim_plug_path . '" -Force '
+    autocmd VimEnter * PlugInstall --sync | source $nvim_config/init.vim
+endif
 
 call plug#begin()
 
@@ -27,8 +27,6 @@ call plug#begin()
 	Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'kyazdani42/nvim-tree.lua'
     Plug 'github/copilot.vim'
-    " Plug 'weilbith/nvim-code-action-menu'
-    Plug 'kosayoda/nvim-lightbulb'
 
 	" Functionalities
 	Plug 'tpope/vim-fugitive'
@@ -53,12 +51,10 @@ call plug#begin()
 	Plug 'yuttie/hydrangea-vim'
 
     Plug 'junegunn/rainbow_parentheses.vim'
-    Plug 'junegunn/limelight.vim'
-    Plug 'junegunn/vim-journal'
 call plug#end()
 
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \| PlugInstall --sync | source $vimrc
+    \| PlugInstall --sync | source $nvim_config/init.vim
 \| endif
 " }}}
 
@@ -178,7 +174,7 @@ require('telescope-config')
 require('lualine-config')
 require('nvim-tree-config')
 require('diagnostics')
-require('nvim-lightbulb-config')
+-- require('nvim-lightbulb-config')
 EOF
 
 " KEY MAPS ------------------------------------------------------------- {{{
@@ -187,15 +183,13 @@ nnoremap <SPACE> <Nop>
 let mapleader = "\<Space>"
 
 " Core
-nmap <leader>q :NvimTreeFindFileToggle<CR>
-nmap \ <leader>q
+nmap \ :NvimTreeFindFileToggle<CR>
 " xmap <leader>a gaip*
 " nmap <leader>a gaip*
 " set to auto?
 nmap <leader>h :RainbowParentheses!!<CR> 
-nmap <leader>j :set filetype=journal<CR>
-nmap <leader>l :Limelight!!<CR>
-xmap <leader>l :Limelight!!<CR>
+" nmap <leader>l :Limelight!!<CR>
+" xmap <leader>l :Limelight!!<CR>
 nmap <leader>k :ColorToggle<CR>
 nmap <silent> <leader><leader> :noh<CR>
 " nmap <Tab> :bnext<CR> " buffer next
